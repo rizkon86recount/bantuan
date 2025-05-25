@@ -23,13 +23,18 @@ function PrediksiStatusEkonomi() {
     });
   };
 
+  const [error, setError] = useState<string | null>(null);
   const handlePredict = async () => {
     try {
       setLoading(true);
+      setError(null); // reset error
       const prediction = await predictStatusEkonomi(formData);
       setResult(prediction);
     } catch (err) {
-      alert("Gagal menghubungi server prediksi.");
+      setResult(null); // reset result
+      setError(
+        "Gagal menghubungi server prediksi. Silakan coba lagi nanti ya :)."
+      );
       console.error(err);
     } finally {
       setLoading(false);
@@ -150,6 +155,19 @@ function PrediksiStatusEkonomi() {
                 ? "Termasuk Keluarga Miskin"
                 : "Tidak Termasuk Keluarga Miskin"}
             </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {error && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4 }}
+            className="mt-6 p-4 rounded-md border text-center bg-red-50 text-red-700 border-red-200"
+          >
+            <p className="text-lg font-medium">{error}</p>
           </motion.div>
         )}
       </AnimatePresence>
