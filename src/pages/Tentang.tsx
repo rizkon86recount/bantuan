@@ -43,8 +43,8 @@ function Tentang() {
             pengguna yang responsif
           </li>
           <li>
-            <strong>Express.js</strong> – Untuk API backend yang menghubungkan
-            frontend dengan model prediksi
+            <strong>Flask API (Python)</strong> – Sebagai backend server untuk
+            menangani request prediksi
           </li>
           <li>
             <strong>Scikit-learn (Python)</strong> – Untuk membangun dan melatih
